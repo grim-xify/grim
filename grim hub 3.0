@@ -1,0 +1,187 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Grim's Hub│ 🐾 Tapping Simulator!", HidePremium = false, SaveConfig = true,IntroEnabled = false, ConfigFolder = "OrionTest"})
+
+-- Value
+
+_G.autoTap = true
+_G.autoRebirth = true
+_G.selectRebirth = "100"
+_G.autoHatch = true
+_G.selectEgg = "Starter"
+
+-- Functions
+
+function autoTap()
+	while _G.autoTap == true do
+		game.ReplicatedStorage.Events.Tap:FireServer()
+		wait(.0000000000000000000000000001)
+	 end
+	end
+
+
+function autoRebirth()
+	while _G.autoRebirth == true do
+		game.ReplicatedStorage.Events.Rebirth:FireServer(_G.selectRebirth)
+		wait(.0000000000000000000000000001)
+	 end
+	end
+
+function autoHatch()
+	while _G.autoHatch == true do
+		game.ReplicatedStorage.Events.HatchEgg:InvokeServer({},"Starter",1)
+		wait(.0000000000000000000000000001)
+	end
+end
+     
+
+-- Tabs
+
+local FarmTab = Window:MakeTab({
+	Name = "AutoFarm",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local EggsTab = Window:MakeTab({
+	Name = "Eggs",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local TeleportsTab = Window:MakeTab({
+	Name = "Teleports",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local MiscTab = Window:MakeTab({
+	Name = "Misc",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+
+-- Toggles
+
+FarmTab:AddToggle({
+	Name = "Auto Tap",
+	Default = false,
+	Callback = function(Value)
+		_G.autoTap = Value
+		autoTap()
+	end    
+})
+
+FarmTab:AddToggle({
+	Name = "Auto Rebirth",
+	Default = false,
+	Callback = function(Value)
+		_G.autoRebirth = Value
+		autoRebirth()
+	end    
+})
+
+EggsTab:AddLabel("NOTICE: Stand next to the egg for the Auto Hatch To work!")
+
+EggsTab:AddToggle({
+	Name = "Auto Hatch",
+	Default = false,
+	Callback = function(Value)
+		_G.autoHatch = Value
+		autoHatch()
+	end    
+})
+
+MiscTab:AddLabel("More options coming soon! (in progress)")
+
+TeleportsTab:AddLabel("NOTICE: Don't use while falling!")
+
+
+-- Dropdowns
+
+FarmTab:AddDropdown({
+	Name = "Amount of Rebirths",
+	Default = "1",
+	Options = {"1","5","10","20","100","500","2000","4500","8000","12500","18000","24500","32000","40500"},
+	Callback = function(Value)
+		_G.selectRebirth = Value
+		print(_G.selectRebirth)
+	end    
+})
+
+EggsTab:AddDropdown({
+	Name = "Select Egg",
+	Default = "Starter",
+	Options = {"Starter","Wood","Jungle","Forest","Flower","Swamp","Snow","Desert","Death","Beach","Mines","Cloud","Coral","Darkheart","Bone"},
+	Callback = function(Value)
+		_G.selectRebirth = Value
+		print(_G.selectRebirth)
+	end    
+})
+
+TeleportsTab:AddDropdown({
+    Name = "Teleport to Area",
+    Default = "",
+    Options = {"Spawn Area", "Forest Area","Flower Area","Swamp Area","Snow Area","Sand Area","Death Area","Beach Area","Mines Area","Cloud Area","Coral Area","Darkheart Area"},
+    Callback = function(Value)
+        if Value == "Spawn Area" then
+          game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-84.6454, 16.5506, -481.442)
+        elseif Value == "Forest Area" then
+           game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-161.951, 977.215, -444.774)
+		elseif Value == "Flower Area" then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-176.474, 1514.45, -648.01)
+		elseif Value == "Swamp Area" then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-264.011, 2113.39, -656.807)
+		elseif Value == "Snow Area" then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-241.092, 2934.25, -469.995)
+		elseif Value == "Sand Area" then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-205.881, 4225.35, -779.94)
+		elseif Value == "Death Area" then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-319.197, 5415.49, -480.928)
+		elseif Value == "Beach Area" then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-180.304, 6872.29, -495.251)
+		elseif Value == "Mines Area" then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-274.924, 8365.88, -483.89)
+		elseif Value == "Mines Area" then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-274.924, 8365.88, -483.89)
+		elseif Value == "Cloud Area" then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-336.513, 11236.1, -236.306)
+		elseif Value == "Coral Area" then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-473.613, 13801.8, -543.772)
+		elseif Value == "Darkheart Area" then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-447.291, 17169.8, -552.321)
+        end
+      end
+})
+
+
+-- Sliders
+MiscTab:AddSlider({
+    Name = "Walkspeed",
+    Min = 16,
+    Max = 250,
+    Default = 16,
+    Color = Color3.fromRGB(255,255,255),
+    Increment = 1,
+    ValueName = "",
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+    end    
+})
+
+MiscTab:AddSlider({
+    Name = "Jump Height (OP works with double jumps)",
+    Min = 50,
+    Max = 750,
+    Default = 50,
+    Color = Color3.fromRGB(255,255,255),
+    Increment = 1,
+    ValueName = "",
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.JumpHeight = Value
+    end    
+})
+
+
+
+OrionLib:Init()
