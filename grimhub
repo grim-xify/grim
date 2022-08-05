@@ -13,7 +13,7 @@ function CheckKey()
     if sf_key == KeyInput then
         Destroy()
         local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-        if game.PlaceId == 8750997647 then
+        if game.PlaceId == 9498006165 then
             print(game.PlaceId)
         end
         local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
